@@ -23,11 +23,12 @@ class MemosController < ApplicationController
 
   # POST /memos or /memos.json
   def create
-    @memo = Memo.new(memo_params)
-
+    @memo = Memo.new()
+    @memo.hamster_id = params[:hamster_id]
+    @memo.body  = params[:memo][:body]
     respond_to do |format|
       if @memo.save
-        format.html { redirect_to memo_url(@memo), notice: "Memo was successfully created." }
+        format.html { redirect_to hamsters_url, notice: "Memo was successfully created." }
         format.json { render :show, status: :created, location: @memo }
       else
         format.html { render :new, status: :unprocessable_entity }
