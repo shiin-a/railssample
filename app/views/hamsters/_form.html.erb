@@ -1,0 +1,32 @@
+<%= form_with(model: hamster, local: true) do |form| %>
+  <% if hamster.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(hamster.errors.count, "error") %> prohibited this hamster from being saved:</h2>
+
+      <ul>
+      <% hamster.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :hamstername %>
+    <%= form.text_field :hamstername %>
+  </div>
+
+  <div class="field">
+    <%= form.label :high %>
+    <%= form.number_field :high %>
+  </div>
+
+  <div class="field">
+    <%= form.label :city %>
+    <%= form.text_field :city %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

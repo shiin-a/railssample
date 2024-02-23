@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Hamsters</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Hamstername</th>
+      <th>High</th>
+      <th>City</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @hamsters.each do |hamster| %>
+      <tr>
+        <td><%= hamster.hamstername %></td>
+        <td><%= hamster.high %></td>
+        <td><%= hamster.city %></td>
+        <td><%= link_to 'Show', hamster %></td>
+        <td><%= link_to 'Edit', edit_hamster_path(hamster) %></td>
+        <td><%= link_to 'Destroy', hamster, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Hamster', new_hamster_path %>
