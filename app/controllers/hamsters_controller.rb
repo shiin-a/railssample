@@ -8,7 +8,10 @@ class HamstersController < ApplicationController
 
   # GET /hamsters/1 or /hamsters/1.json
   def show
-    @memo  = Memo.new
+    @newmemo  = @hamster.memos.new()
+    Rails.logger.debug "shiina"
+    Rails.logger.debug @newmemo
+    @memos = Memo.where(hamster_id: params[:id])
   end
 
   # GET /hamsters/new
@@ -66,6 +69,7 @@ class HamstersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def hamster_params
-      params.require(:hamster).permit(:hamstername, :high, :city)
+      params.require(:hamster).permit(:hamstername)
+      .permit(:high, :city)
     end
 end

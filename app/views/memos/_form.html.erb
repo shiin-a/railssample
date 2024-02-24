@@ -1,4 +1,4 @@
-<%= form_with(model: memo, local: true, url: hamsters_path) do |form| %>
+<%= form_with(model: memo, local: true, url: hamster_memos_path(memo.hamster_id) ) do |form| %>
   <% if memo.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(memo.errors.count, "error") %> prohibited this memo from being saved:</h2>
@@ -12,10 +12,10 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :body %>
+    <a>メモを追加する</a><br />
     <%= form.text_area :body %>
   </div>
-
+<br /><br />
   <div class="actions">
     <%= form.submit %>
   </div>

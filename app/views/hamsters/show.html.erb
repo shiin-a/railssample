@@ -14,9 +14,27 @@
   <strong>City:</strong>
   <%= @hamster.city %>
 </p>
-
-
-<%= render 'memos/form', memo: @memo %>
-
 <%= link_to 'Edit', edit_hamster_path(@hamster) %> |
+
+<br /><br /><br /><br /><br /><br />
+<table>
+  <thead>
+    <tr>
+      <th>Body</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @memos.each do |memo| %>
+      <tr>
+        <td><%= memo.body %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= render 'memos/form', memo: @newmemo %>
+
+
 <%= link_to 'Back', hamsters_path %>

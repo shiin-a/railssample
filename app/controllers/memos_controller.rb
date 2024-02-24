@@ -23,12 +23,15 @@ class MemosController < ApplicationController
 
   # POST /memos or /memos.json
   def create
-    @memo = Memo.new()
-    @memo.hamster_id = params[:hamster_id]
-    @memo.body  = params[:memo][:body]
+    
+    @hamster = Hamster.find(params[:hamster_id])
+    Rails.logger.debug "shiina memo"
+    Rails.logger.debug @hamster.id
+    Rails.logger.debug @hamster
+    @memo = @hamster.memos.new(memo_params)
     respond_to do |format|
       if @memo.save
-        format.html { redirect_to hamsters_url, notice: "Memo was successfully created." }
+        format.html { redirect_to hamster_url(params[:hamster_id]), notice: "Memo was successfully created." }
         format.json { render :show, status: :created, location: @memo }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -68,6 +71,7 @@ class MemosController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def memo_params
+      params.permit(:hamster_id)
       params.require(:memo).permit(:body)
     end
 end
