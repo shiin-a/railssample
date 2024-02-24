@@ -15,5 +15,8 @@
   <%= @hamster.city %>
 </p>
 
+
+<%= render 'memos/form', memo: @memo %>
+
 <%= link_to 'Edit', edit_hamster_path(@hamster) %> |
 <%= link_to 'Back', hamsters_path %>

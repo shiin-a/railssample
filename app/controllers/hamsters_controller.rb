@@ -8,6 +8,7 @@ class HamstersController < ApplicationController
 
   # GET /hamsters/1 or /hamsters/1.json
   def show
+    @memo  = Memo.new
   end
 
   # GET /hamsters/new
